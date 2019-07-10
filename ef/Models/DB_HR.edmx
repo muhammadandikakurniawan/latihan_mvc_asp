@@ -34,8 +34,20 @@ warning 6002: The table/view 'HR.HR.COPY_EMP' does not have a primary key define
         </EntityType>
         <EntityContainer Name="HRModelStoreContainer">
           <EntitySet Name="DEPARTMENTS" EntityType="Self.DEPARTMENTS" Schema="HR" store:Type="Tables" />
-          <EntitySet Name="COPY_EMP" EntityType="Self.COPY_EMP" store:Type="Tables" Schema="HR">
-           
+          <EntitySet Name="COPY_EMP" EntityType="Self.COPY_EMP" store:Type="Tables" store:Schema="HR">
+            <DefiningQuery>SELECT 
+    [COPY_EMP].[EMPLOYEE_ID] AS [EMPLOYEE_ID], 
+    [COPY_EMP].[FIRST_NAME] AS [FIRST_NAME], 
+    [COPY_EMP].[LAST_NAME] AS [LAST_NAME], 
+    [COPY_EMP].[EMAIL] AS [EMAIL], 
+    [COPY_EMP].[PHONE_NUMBER] AS [PHONE_NUMBER], 
+    [COPY_EMP].[HIRE_DATE] AS [HIRE_DATE], 
+    [COPY_EMP].[JOB_ID] AS [JOB_ID], 
+    [COPY_EMP].[SALARY] AS [SALARY], 
+    [COPY_EMP].[COMMISSION_PCT] AS [COMMISSION_PCT], 
+    [COPY_EMP].[MANAGER_ID] AS [MANAGER_ID], 
+    [COPY_EMP].[DEPARTMENT_ID] AS [DEPARTMENT_ID]
+    FROM [HR].[COPY_EMP] AS [COPY_EMP]</DefiningQuery>
           </EntitySet>
         </EntityContainer>
       </Schema>
@@ -68,7 +80,7 @@ warning 6002: The table/view 'HR.HR.COPY_EMP' does not have a primary key define
           <Property Name="MANAGER_ID" Type="Decimal" Precision="6" Scale="0" />
           <Property Name="DEPARTMENT_ID" Type="Decimal" Precision="4" Scale="0" />
         </EntityType>
-        <EntityContainer Name="HREntities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="HREntities3" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="DEPARTMENTS" EntityType="Self.DEPARTMENT" />
           <EntitySet Name="COPY_EMP" EntityType="Self.COPY_EMP" />
         </EntityContainer>
@@ -77,7 +89,7 @@ warning 6002: The table/view 'HR.HR.COPY_EMP' does not have a primary key define
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="HRModelStoreContainer" CdmEntityContainer="HREntities1">
+        <EntityContainerMapping StorageEntityContainer="HRModelStoreContainer" CdmEntityContainer="HREntities3">
           <EntitySetMapping Name="DEPARTMENTS">
             <EntityTypeMapping TypeName="HRModel.DEPARTMENT">
               <MappingFragment StoreEntitySet="DEPARTMENTS">

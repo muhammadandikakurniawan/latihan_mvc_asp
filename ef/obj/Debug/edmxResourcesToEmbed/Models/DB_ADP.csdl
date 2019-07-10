@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="db_adpModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="barang">
+    <Key>
+      <PropertyRef Name="id_barang" />
+    </Key>
+    <Property Name="id_barang" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="id_pesanan" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="nama_barang" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="harga_barang" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="stock_barang" Type="Int32" />
+    <Property Name="deskripsi_barang" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityContainer Name="db_adpEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="barangs" EntityType="Self.barang" />
+  </EntityContainer>
+</Schema>

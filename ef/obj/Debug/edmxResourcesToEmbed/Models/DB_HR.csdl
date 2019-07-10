@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HRModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="DEPARTMENT">
+    <Key>
+      <PropertyRef Name="DEPARTMENT_ID" />
+    </Key>
+    <Property Name="DEPARTMENT_ID" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+    <Property Name="DEPARTMENT_NAME" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MANAGER_ID" Type="Decimal" Precision="6" Scale="0" />
+    <Property Name="LOCATION_ID" Type="Decimal" Precision="4" Scale="0" />
+  </EntityType>
+  <EntityType Name="COPY_EMP">
+    <Key>
+      <PropertyRef Name="EMPLOYEE_ID" />
+    </Key>
+    <Property Name="EMPLOYEE_ID" Type="Decimal" Precision="6" Scale="0" Nullable="false" />
+    <Property Name="FIRST_NAME" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="LAST_NAME" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="EMAIL" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="PHONE_NUMBER" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="HIRE_DATE" Type="DateTime" Precision="0" />
+    <Property Name="JOB_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="SALARY" Type="Decimal" Precision="8" Scale="2" />
+    <Property Name="COMMISSION_PCT" Type="Decimal" Precision="2" Scale="2" />
+    <Property Name="MANAGER_ID" Type="Decimal" Precision="6" Scale="0" />
+    <Property Name="DEPARTMENT_ID" Type="Decimal" Precision="4" Scale="0" />
+  </EntityType>
+  <EntityContainer Name="HREntities3" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="DEPARTMENTS" EntityType="Self.DEPARTMENT" />
+    <EntitySet Name="COPY_EMP" EntityType="Self.COPY_EMP" />
+  </EntityContainer>
+</Schema>

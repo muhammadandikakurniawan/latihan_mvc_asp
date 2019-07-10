@@ -19,7 +19,7 @@ namespace ef.Controllers
         [Route("ex/employee/list")]
         public ActionResult EmployeeList()
         {
-            HREntities hr = new HREntities();
+            HREntities3 hr = new HREntities3();
             List<COPY_EMP> emp = hr.COPY_EMP.ToList();
             return View("Employee/List", emp);
         }
@@ -28,7 +28,7 @@ namespace ef.Controllers
         [Route("ex/employee/list")]
         public ActionResult EmployeeList(string keyword)
         {
-            using (HREntities hr = new HREntities())
+            using (HREntities3 hr = new HREntities3())
             {
                 var regex = new Regex(".+(" + keyword + ").+", RegexOptions.IgnoreCase);
                 //cara 1 => List<COPY_EMP> emp = hr.COPY_EMP.Where(e => e.FIRST_NAME.Contains(keyword)).ToList();
@@ -51,7 +51,7 @@ namespace ef.Controllers
             {
                 return Redirect("~/ex/employee/list");
             }
-            HREntities hr = new HREntities();
+            HREntities3 hr = new HREntities3();
             COPY_EMP emp = hr.COPY_EMP.ToList().Find(e => e.EMPLOYEE_ID.Equals(id));
             return View("Employee/Edit", emp);
         }
@@ -61,7 +61,7 @@ namespace ef.Controllers
         public ActionResult EditEmployee(COPY_EMP emp)
         {
 
-            using (HREntities hr = new HREntities())
+            using (HREntities3 hr = new HREntities3())
             {
                 COPY_EMP empl = hr.COPY_EMP.Find(emp.EMPLOYEE_ID);
                 empl.FIRST_NAME = emp.FIRST_NAME;
@@ -82,7 +82,7 @@ namespace ef.Controllers
         [Route("ex/employee/add")]
         public ActionResult AddEmployee(COPY_EMP emp)
         {
-           using (HREntities hr = new HREntities())
+           using (HREntities3 hr = new HREntities3())
             {
                 hr.COPY_EMP.Add(emp);
                 hr.SaveChanges();
@@ -93,12 +93,50 @@ namespace ef.Controllers
         [Route("ex/employee/delete/{id}")]
         public ActionResult DeleteEmployee(int id)
         {
-            using (HREntities hr = new HREntities()) {
+            using (HREntities3 hr = new HREntities3()) {
                 COPY_EMP employee = hr.COPY_EMP.ToList().Find(e => e.EMPLOYEE_ID.Equals(id));
                 hr.COPY_EMP.Remove(employee);
                 hr.SaveChanges();
                 return Redirect("~/ex/employee/list");
             }
         }
+
+
+
+
+
+
+        [Route("ex/barang/list")]
+        public ActionResult ListBarang()
+        {
+            db_adpEntities adp = new db_adpEntities();
+            List<barang> ListBarang = adp.barangs.ToList();
+            return View("Barang/List",ListBarang);
+        }
+
+        [HttpGet]
+        [Route("ex/barang/add")]
+        public ActionResult AddBarang()
+        {
+            return View("Barang/Add");
+        }
+
+        [HttpPost]
+        [Route("ex/barang/add")]
+        public ActionResult AddBarang(barang barang)
+        {
+            db_adpEntities adp = new db_adpEntities();
+            adp.barangs.Add(barang);
+            adp.SaveChanges();
+            return Redirect("~/ex/barang/list");
+        }
+
+
+
+
+
+
+
+
     }
 }

@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HRModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'HR.HR.COPY_EMP' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="COPY_EMP">
+    <Key>
+      <PropertyRef Name="EMPLOYEE_ID" />
+    </Key>
+    <Property Name="EMPLOYEE_ID" Type="numeric" Precision="6" Scale="0" Nullable="false" />
+    <Property Name="FIRST_NAME" Type="nvarchar" MaxLength="20" />
+    <Property Name="LAST_NAME" Type="nvarchar" MaxLength="25" />
+    <Property Name="EMAIL" Type="nvarchar" MaxLength="25" />
+    <Property Name="PHONE_NUMBER" Type="nvarchar" MaxLength="20" />
+    <Property Name="HIRE_DATE" Type="date" />
+    <Property Name="JOB_ID" Type="nvarchar" MaxLength="10" />
+    <Property Name="SALARY" Type="numeric" Precision="8" Scale="2" />
+    <Property Name="COMMISSION_PCT" Type="numeric" Precision="2" Scale="2" />
+    <Property Name="MANAGER_ID" Type="numeric" Precision="6" Scale="0" />
+    <Property Name="DEPARTMENT_ID" Type="numeric" Precision="4" Scale="0" />
+  </EntityType>
+  <EntityType Name="DEPARTMENTS">
+    <Key>
+      <PropertyRef Name="DEPARTMENT_ID" />
+    </Key>
+    <Property Name="DEPARTMENT_ID" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+    <Property Name="DEPARTMENT_NAME" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="MANAGER_ID" Type="numeric" Precision="6" Scale="0" />
+    <Property Name="LOCATION_ID" Type="numeric" Precision="4" Scale="0" />
+  </EntityType>
+  <EntityContainer Name="HRModelStoreContainer">
+    <EntitySet Name="DEPARTMENTS" EntityType="Self.DEPARTMENTS" Schema="HR" store:Type="Tables" />
+    <EntitySet Name="COPY_EMP" EntityType="Self.COPY_EMP" store:Type="Tables" store:Schema="HR">
+      <DefiningQuery>SELECT 
+    [COPY_EMP].[EMPLOYEE_ID] AS [EMPLOYEE_ID], 
+    [COPY_EMP].[FIRST_NAME] AS [FIRST_NAME], 
+    [COPY_EMP].[LAST_NAME] AS [LAST_NAME], 
+    [COPY_EMP].[EMAIL] AS [EMAIL], 
+    [COPY_EMP].[PHONE_NUMBER] AS [PHONE_NUMBER], 
+    [COPY_EMP].[HIRE_DATE] AS [HIRE_DATE], 
+    [COPY_EMP].[JOB_ID] AS [JOB_ID], 
+    [COPY_EMP].[SALARY] AS [SALARY], 
+    [COPY_EMP].[COMMISSION_PCT] AS [COMMISSION_PCT], 
+    [COPY_EMP].[MANAGER_ID] AS [MANAGER_ID], 
+    [COPY_EMP].[DEPARTMENT_ID] AS [DEPARTMENT_ID]
+    FROM [HR].[COPY_EMP] AS [COPY_EMP]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

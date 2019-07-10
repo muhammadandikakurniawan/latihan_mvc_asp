@@ -13,10 +13,10 @@ namespace ef.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class HREntities : DbContext
+    public partial class db_adpEntities : DbContext
     {
-        public HREntities()
-            : base("name=HREntities1")
+        public db_adpEntities()
+            : base("name=db_adpEntities")
         {
         }
     
@@ -25,7 +25,6 @@ namespace ef.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<DEPARTMENT> DEPARTMENTS { get; set; }
-        public virtual DbSet<COPY_EMP> COPY_EMP { get; set; }
+        public virtual DbSet<barang> barangs { get; set; }
     }
 }

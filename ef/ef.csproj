@@ -139,26 +139,44 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\barang.cs">
+      <DependentUpon>DB_ADP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\COPY_EMP.cs">
-      <DependentUpon>DB.tt</DependentUpon>
+      <DependentUpon>DB_HR.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\DB.Context.cs">
+    <Compile Include="Models\DB_ADP.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DB.Context.tt</DependentUpon>
+      <DependentUpon>DB_ADP.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\DB.cs">
+    <Compile Include="Models\DB_ADP.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DB.tt</DependentUpon>
+      <DependentUpon>DB_ADP.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\DB.Designer.cs">
+    <Compile Include="Models\DB_ADP.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DB.edmx</DependentUpon>
+      <DependentUpon>DB_ADP.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB_HR.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DB_HR.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB_HR.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DB_HR.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB_HR.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DB_HR.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\DEPARTMENT.cs">
-      <DependentUpon>DB.tt</DependentUpon>
+      <DependentUpon>DB_HR.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -181,25 +199,28 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\DB.Context.tt">
+    <Content Include="Models\DB_ADP.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DB.edmx</DependentUpon>
-      <LastGenOutput>DB.Context.cs</LastGenOutput>
+      <DependentUpon>DB_ADP.edmx</DependentUpon>
+      <LastGenOutput>DB_ADP.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\DB.tt">
+    <Content Include="Models\DB_ADP.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DB.edmx</DependentUpon>
-      <LastGenOutput>DB.cs</LastGenOutput>
+      <DependentUpon>DB_ADP.edmx</DependentUpon>
+      <LastGenOutput>DB_ADP.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\DB_HR.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DB_HR.edmx</DependentUpon>
+      <LastGenOutput>DB_HR.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\DB_HR.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DB_HR.edmx</DependentUpon>
+      <LastGenOutput>DB_HR.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\DB.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>DB.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\DB.edmx.diagram">
-      <DependentUpon>DB.edmx</DependentUpon>
-    </Content>
     <Content Include="Assests\bootstrap\css\.DS_Store" />
     <Content Include="Assests\bootstrap\css\bootstrap-grid.css.map" />
     <Content Include="Assests\bootstrap\css\bootstrap-grid.min.css.map" />
@@ -211,6 +232,20 @@
     <Content Include="Assests\bootstrap\js\bootstrap.bundle.min.js.map" />
     <Content Include="Assests\bootstrap\js\bootstrap.js.map" />
     <Content Include="Assests\bootstrap\js\bootstrap.min.js.map" />
+    <EntityDeploy Include="Models\DB_ADP.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>DB_ADP.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\DB_ADP.edmx.diagram">
+      <DependentUpon>DB_ADP.edmx</DependentUpon>
+    </Content>
+    <EntityDeploy Include="Models\DB_HR.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>DB_HR.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\DB_HR.edmx.diagram">
+      <DependentUpon>DB_HR.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -242,6 +277,8 @@
     <Content Include="Views\Ex\Employee\Index.cshtml" />
     <Content Include="Views\Ex\Employee\Edit.cshtml" />
     <Content Include="Views\Ex\Employee\AddForm.cshtml" />
+    <Content Include="Views\Ex\Barang\List.cshtml" />
+    <Content Include="Views\Ex\Barang\Add.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -11,6 +11,7 @@ namespace ef.Models
 {
     using System;
     using System.Collections.Generic;
+    
     public partial class COPY_EMP
     {
         public decimal EMPLOYEE_ID { get; set; }
