@@ -1,0 +1,30 @@
+﻿@model ef.Models.COPY_EMP
+
+@section content {
+    
+<form action="~/ex/employee/add" method="post">
+    <div class="form-group">
+        <label for="FM">Id</label>
+        @Html.TextBoxFor(e => e.EMPLOYEE_ID, new { @class = "form - control", @id = "FM" })
+    </div>
+
+    <div class="form-group">
+        <label for="FM">First Name</label>
+        @Html.TextBoxFor(e => e.FIRST_NAME, new { @class = "form - control", @id = "FM" })
+    </div>
+
+    <div class="form-group">
+        <label for="LM">Last Name</label>
+        @Html.TextBoxFor(e => e.LAST_NAME, new { @class = "form - control", @id = "LM" })
+    </div>
+
+    <div class="form-group">
+        <label for="email">Email</label>
+        @Html.TextBoxFor(e => e.EMAIL, new { @class = "form - control", @id = "email" })
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-success">Save</button>
+    </div>
+</form>
+    
+}

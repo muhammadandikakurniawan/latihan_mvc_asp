@@ -1,0 +1,34 @@
+﻿@model IEnumerable<ef.Models.COPY_EMP>
+@section content{
+
+    <form class="form-inline my-2 my-lg-0" action="~/ex/employee/list" method="post">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="keyword">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">No</th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @{ int no = 1;}
+            @foreach (var emp in Model)
+            {
+                <tr>
+                    <th scope="row">@(no++)</th>
+                    <td>@emp.FIRST_NAME @emp.LAST_NAME</td>
+                    <td>@emp.EMAIL</td>
+                    <td><a href="~/ex/employee/edit/@emp.EMPLOYEE_ID" class="btn btn-primary">Edit</a></td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+
+
+}
