@@ -1,0 +1,46 @@
+﻿@model List<_5.Models.Product>
+@{
+    Layout = "~/Views/Templates/App.cshtml";
+}
+@section content{
+<div class="container">
+    @if(TempData.Peek("message") != null)
+    {
+    <div class="alert alert-@TempData["type"] alert-dismissible fade show" role="alert">
+        @TempData["message"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    }
+    <table class="table">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col">No</th>
+                <th scope="col">Product Id</th>
+                <th scope="col">Product Name</th>
+                <th scope="col">Product Price</th>
+                <th scope="col">Product Stock</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @{ int no = 1;}
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <th scope="row">@(no++)</th>
+                    <td>@item.ProductId</td>
+                    <td>@item.ProductName</td>
+                    <td>@item.ProductPrice</td>
+                    <td>@item.ProductStock</td>
+                    <td>
+                        <a href="~/ex/product/update/@item.ProductId" class="btn btn-primary">Edit</a>
+                        <a href="~/ex/product/delete/@item.ProductId" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+}

@@ -1,0 +1,31 @@
+﻿@model _3.Models.Product
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Add</title>
+</head>
+<body>
+    <div class="container">
+        <form action="~/latihandua/update" method="post">
+            <div class="form-group">
+                <label for="od">Id</label>
+                <input type="text" class="form-control" id="id" required pattern="\d+" name="IdProduct" value="@Model.IdProduct" readonly>
+            </div>
+            <div class="form-group">
+                <label for="name">Product Name</label>
+                <input type="text" class="form-control" id="name" required name="NameProduct" value="@Model.NameProduct">
+            </div>
+            <div class="form-group">
+                <label for="price">Product Price</label>
+                <input type="text" class="form-control" id="price" required pattern="[0-9]+" name="PriceProduct" value="@Model.PriceProduct">
+            </div>
+            <div class="form-group">
+                <label for="qty">Qunatity Product</label>
+                <input type="text" class="form-control" id="qty" required pattern="[0-9]+" name="QtyProduct" value="@Model.QtyProduct">
+            </div>
+            <button type="submit" class="btn btn-success" name="save">Save</button>
+        </form>
+    </div>
+</body>
+</html>

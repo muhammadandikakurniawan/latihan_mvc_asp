@@ -1,0 +1,51 @@
+﻿@model _5.Models.Product
+@{
+    Layout = "~/Views/Templates/App.cshtml";
+}
+
+@section content{ 
+    <div class="container">
+        <form action="~/ex/product/add" method="post">
+            <table>
+                <tr>
+                    <td>Id</td>
+                    <td>:</td>
+                    <td>
+                        @Html.TextBoxFor(p => p.ProductId,new { autocomplete = "off" })
+                        @Html.ValidationMessageFor(p => p.ProductId)        
+                    </td>
+                </tr>
+                <tr>
+                    <td>Name</td>
+                    <td>:</td>
+                    <td>
+                        @Html.TextBoxFor(p => p.ProductName, new { autocomplete = "off" })
+                        @Html.ValidationMessageFor(p => p.ProductName)
+                    </td>
+                </tr>
+                <tr>
+                    <td>Price</td>
+                    <td>:</td>
+                    <td>
+                        @Html.TextBoxFor(p => p.ProductPrice, new { autocomplete = "off" })
+                        @Html.ValidationMessageFor(p => p.ProductPrice)
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>Stock</td>
+                    <td>:</td>
+                    <td>
+                        @Html.TextBoxFor(p => p.ProductStock, new { autocomplete = "off" })
+                        @Html.ValidationMessageFor(p => p.ProductStock)
+
+                    </td>
+                </tr>
+
+                <tr>
+                    <td><input type="submit" class="btn btn-success" value="Add" /></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+}

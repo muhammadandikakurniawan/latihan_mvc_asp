@@ -1,0 +1,56 @@
+﻿@model List<_3.Models.Product>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>View</title>
+    <link rel="stylesheet" href="~/Content/bootstrap.css" type="text/css" />
+</head>
+<body>
+    <div class="container">
+        <a href="~/latihandua/add" class="btn btn-primary">Add</a>
+        <table class="table">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">No</th>
+                    <th scope="col">Id</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Qty</th>
+                    <th scope="col">SubTotal</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    int no = 0;
+                    List<double> Total = new List<double>();
+                }
+                @foreach (var item in Model)
+                {
+                <tr>
+                    @{
+                        no++;
+                        double sbTotal = Convert.ToDouble(item.QtyProduct) * item.PriceProduct;
+                        Total.Add(sbTotal);
+                    }
+                    <th scope="row">@no</th>
+                    <td>@item.IdProduct</td>
+                    <td>@item.NameProduct</td>
+                    <td>@item.PriceProduct</td>
+                    <td>@item.QtyProduct</td>
+                    <td>@sbTotal</td>
+                    <td>
+                        <a class="btn btn-danger" href="~/latihandua/delete/@item.IdProduct">Delete</a>
+                        <a class="btn btn-primary" href="~/latihandua/update/@item.IdProduct">Edit</a>
+                    </td>
+                </tr>
+                }
+                <tr>
+                    <td colspan="6"><p class="text-right">Total = @Total.Sum()</p></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

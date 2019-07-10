@@ -1,0 +1,14 @@
+﻿<html>
+<head>
+    <title>
+        @ViewBag.Title
+    </title>
+</head>
+<h2>@ViewBag.Data["data1"]</h2>
+<h2>@ViewBag.Data["data2"]</h2>
+<h2>@ViewBag.Data["data3"]</h2>
+<form action="~/employee" method="post">
+    <input type="text" id="data3" name="data3" />
+    <button type="submit" name="send">Send</button>
+</form>
+</html>
