@@ -274,11 +274,13 @@
     <Content Include="Views\Ex\_ViewStart.cshtml" />
     <Content Include="Views\Templates\App.cshtml" />
     <Content Include="Views\Ex\Employee\List.cshtml" />
-    <Content Include="Views\Ex\Employee\Index.cshtml" />
+    <Content Include="Views\Ex\Index.cshtml" />
     <Content Include="Views\Ex\Employee\Edit.cshtml" />
     <Content Include="Views\Ex\Employee\AddForm.cshtml" />
     <Content Include="Views\Ex\Barang\List.cshtml" />
     <Content Include="Views\Ex\Barang\Add.cshtml" />
+    <Content Include="Views\Ex\Barang\Edit.cshtml" />
+    <Content Include="Views\Ex\Auth.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
