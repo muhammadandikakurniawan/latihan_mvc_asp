@@ -138,7 +138,6 @@ namespace Api.Controllers
             {
                 HR_Entities hr = new HR_Entities();
                 hr.COPY_EMP.Add(emp);
-                hr.COPY_EMP.Add(emp);
                 hr.SaveChanges();
                 if (emp == null) return BadRequest(); 
             }

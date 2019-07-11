@@ -211,42 +211,45 @@ namespace ef.Controllers
             List<barang> ListBarang;
             if (Request["keyword"] != null)
             {
-                ListBarang = adp.barangs.ToList().FindAll(p => p.nama_barang.Contains(Request["keyword"]));
+                ListBarang = adp.barangs.ToList().FindAll(p => Regex.IsMatch(p.nama_barang, "^.*["+Request["keyword"]+"].*$"));
                 if (ListBarang.Count < 1)
                 {
                     ListBarang = adp.barangs.ToList();
                 }
             }
-            ListBarang = adp.barangs.ToList();
+            else
+            {
+                ListBarang = adp.barangs.ToList();
+            }
             return View("Barang/List", ListBarang);
         }
 
-        [HttpPost]
-        [Route("ex/barang/list")]
-        public ActionResult SearchBarang(string keyword = "")
-        {
-            if (Session["login"] == null)
-            {
-                return Redirect("~/");
-            }
-            db_adpEntities adp = new db_adpEntities();
-            List<barang> ListBarang;
-            if (keyword != null || keyword != "")
-            {
-                ListBarang = adp.barangs.Where(p => p.nama_barang.Contains(keyword) || p.id_barang.Contains(keyword)).ToList();
-                if (ListBarang.Count < 1)
-                {
-                    TempData.Add("message", "Barang tidak tersedia");
-                    TempData.Add("type", "warning");
-                    return Redirect("~/ex/barang/list");
-                }
-                else
-                {
-                    return View("Barang/List", ListBarang);
-                }
-            }
-            return Redirect("~/ex/barang/list");
-        }
+        //[HttpPost]
+        //[Route("ex/barang/list")]
+        //public ActionResult SearchBarang(string keyword = "")
+        //{
+        //    if (Session["login"] == null)
+        //    {
+        //        return Redirect("~/");
+        //    }
+        //    db_adpEntities adp = new db_adpEntities();
+        //    List<barang> ListBarang;
+        //    if (keyword != null || keyword != "")
+        //    {
+        //        ListBarang = adp.barangs.Where(p => p.nama_barang.Contains(keyword) || p.id_barang.Contains(keyword)).ToList();
+        //        if (ListBarang.Count < 1)
+        //        {
+        //            TempData.Add("message", "Barang tidak tersedia");
+        //            TempData.Add("type", "warning");
+        //            return Redirect("~/ex/barang/list");
+        //        }
+        //        else
+        //        {
+        //            return View("Barang/List", ListBarang);
+        //        }
+        //    }
+        //    return Redirect("~/ex/barang/list");
+        //}
 
         [HttpGet]
         [Route("ex/barang/add")]
