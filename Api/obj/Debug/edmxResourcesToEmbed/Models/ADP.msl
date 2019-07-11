@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="db_adpModelStoreContainer" CdmEntityContainer="ADP_Entities">
+    <EntitySetMapping Name="barangs">
+      <EntityTypeMapping TypeName="db_adpModel.barang">
+        <MappingFragment StoreEntitySet="barang">
+          <ScalarProperty Name="id_barang" ColumnName="id_barang" />
+          <ScalarProperty Name="id_pesanan" ColumnName="id_pesanan" />
+          <ScalarProperty Name="nama_barang" ColumnName="nama_barang" />
+          <ScalarProperty Name="harga_barang" ColumnName="harga_barang" />
+          <ScalarProperty Name="stock_barang" ColumnName="stock_barang" />
+          <ScalarProperty Name="deskripsi_barang" ColumnName="deskripsi_barang" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="customers">
+      <EntityTypeMapping TypeName="db_adpModel.customer">
+        <MappingFragment StoreEntitySet="customer">
+          <ScalarProperty Name="id_customer" ColumnName="id_customer" />
+          <ScalarProperty Name="nama_customer" ColumnName="nama_customer" />
+          <ScalarProperty Name="telp_customer" ColumnName="telp_customer" />
+          <ScalarProperty Name="alamat_customer" ColumnName="alamat_customer" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="pesanans">
+      <EntityTypeMapping TypeName="db_adpModel.pesanan">
+        <MappingFragment StoreEntitySet="pesanan">
+          <ScalarProperty Name="id_pesanan" ColumnName="id_pesanan" />
+          <ScalarProperty Name="nomor_invoice" ColumnName="nomor_invoice" />
+          <ScalarProperty Name="jumlah_pesanan" ColumnName="jumlah_pesanan" />
+          <ScalarProperty Name="total_harga" ColumnName="total_harga" />
+          <ScalarProperty Name="diskon" ColumnName="diskon" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

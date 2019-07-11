@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="db_adpModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="barang">
+    <Key>
+      <PropertyRef Name="id_barang" />
+    </Key>
+    <Property Name="id_barang" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="id_pesanan" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="nama_barang" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="harga_barang" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="stock_barang" Type="Int32" />
+    <Property Name="deskripsi_barang" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="pesanan" Relationship="Self.FK__barang__id_pesan__5165187F" FromRole="barang" ToRole="pesanan" />
+  </EntityType>
+  <EntityType Name="customer">
+    <Key>
+      <PropertyRef Name="id_customer" />
+    </Key>
+    <Property Name="id_customer" Type="String" MaxLength="3" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="nama_customer" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="telp_customer" Type="Decimal" Precision="13" Scale="0" />
+    <Property Name="alamat_customer" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="pesanan">
+    <Key>
+      <PropertyRef Name="id_pesanan" />
+    </Key>
+    <Property Name="id_pesanan" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="nomor_invoice" Type="String" MaxLength="14" FixedLength="false" Unicode="true" />
+    <Property Name="jumlah_pesanan" Type="Int32" />
+    <Property Name="total_harga" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="diskon" Type="Double" />
+    <NavigationProperty Name="barangs" Relationship="Self.FK__barang__id_pesan__5165187F" FromRole="pesanan" ToRole="barang" />
+  </EntityType>
+  <Association Name="FK__barang__id_pesan__5165187F">
+    <End Role="pesanan" Type="Self.pesanan" Multiplicity="0..1" />
+    <End Role="barang" Type="Self.barang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="pesanan">
+        <PropertyRef Name="id_pesanan" />
+      </Principal>
+      <Dependent Role="barang">
+        <PropertyRef Name="id_pesanan" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ADP_Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="barangs" EntityType="Self.barang" />
+    <EntitySet Name="customers" EntityType="Self.customer" />
+    <EntitySet Name="pesanans" EntityType="Self.pesanan" />
+    <AssociationSet Name="FK__barang__id_pesan__5165187F" Association="Self.FK__barang__id_pesan__5165187F">
+      <End Role="pesanan" EntitySet="pesanans" />
+      <End Role="barang" EntitySet="barangs" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

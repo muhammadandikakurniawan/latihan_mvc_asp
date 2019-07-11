@@ -1,0 +1,179 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="db_adpModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="barang">
+          <Key>
+            <PropertyRef Name="id_barang" />
+          </Key>
+          <Property Name="id_barang" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="id_pesanan" Type="nvarchar" MaxLength="5" />
+          <Property Name="nama_barang" Type="varchar" MaxLength="30" />
+          <Property Name="harga_barang" Type="money" />
+          <Property Name="stock_barang" Type="int" />
+          <Property Name="deskripsi_barang" Type="text" />
+        </EntityType>
+        <EntityType Name="customer">
+          <Key>
+            <PropertyRef Name="id_customer" />
+          </Key>
+          <Property Name="id_customer" Type="nvarchar" MaxLength="3" Nullable="false" />
+          <Property Name="nama_customer" Type="varchar" MaxLength="30" />
+          <Property Name="telp_customer" Type="numeric" Precision="13" Scale="0" />
+          <Property Name="alamat_customer" Type="text" />
+        </EntityType>
+        <EntityType Name="pesanan">
+          <Key>
+            <PropertyRef Name="id_pesanan" />
+          </Key>
+          <Property Name="id_pesanan" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="nomor_invoice" Type="nvarchar" MaxLength="14" />
+          <Property Name="jumlah_pesanan" Type="int" />
+          <Property Name="total_harga" Type="money" />
+          <Property Name="diskon" Type="float" />
+        </EntityType>
+        <Association Name="FK__barang__id_pesan__5165187F">
+          <End Role="pesanan" Type="Self.pesanan" Multiplicity="0..1" />
+          <End Role="barang" Type="Self.barang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pesanan">
+              <PropertyRef Name="id_pesanan" />
+            </Principal>
+            <Dependent Role="barang">
+              <PropertyRef Name="id_pesanan" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="db_adpModelStoreContainer">
+          <EntitySet Name="barang" EntityType="Self.barang" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="customer" EntityType="Self.customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="pesanan" EntityType="Self.pesanan" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__barang__id_pesan__5165187F" Association="Self.FK__barang__id_pesan__5165187F">
+            <End Role="pesanan" EntitySet="pesanan" />
+            <End Role="barang" EntitySet="barang" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="db_adpModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="barang">
+          <Key>
+            <PropertyRef Name="id_barang" />
+          </Key>
+          <Property Name="id_barang" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="id_pesanan" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="nama_barang" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="harga_barang" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="stock_barang" Type="Int32" />
+          <Property Name="deskripsi_barang" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="pesanan" Relationship="Self.FK__barang__id_pesan__5165187F" FromRole="barang" ToRole="pesanan" />
+        </EntityType>
+        <EntityType Name="customer">
+          <Key>
+            <PropertyRef Name="id_customer" />
+          </Key>
+          <Property Name="id_customer" Type="String" MaxLength="3" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="nama_customer" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="telp_customer" Type="Decimal" Precision="13" Scale="0" />
+          <Property Name="alamat_customer" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="pesanan">
+          <Key>
+            <PropertyRef Name="id_pesanan" />
+          </Key>
+          <Property Name="id_pesanan" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="nomor_invoice" Type="String" MaxLength="14" FixedLength="false" Unicode="true" />
+          <Property Name="jumlah_pesanan" Type="Int32" />
+          <Property Name="total_harga" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="diskon" Type="Double" />
+          <NavigationProperty Name="barangs" Relationship="Self.FK__barang__id_pesan__5165187F" FromRole="pesanan" ToRole="barang" />
+        </EntityType>
+        <Association Name="FK__barang__id_pesan__5165187F">
+          <End Role="pesanan" Type="Self.pesanan" Multiplicity="0..1" />
+          <End Role="barang" Type="Self.barang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pesanan">
+              <PropertyRef Name="id_pesanan" />
+            </Principal>
+            <Dependent Role="barang">
+              <PropertyRef Name="id_pesanan" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ADP_Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="barangs" EntityType="Self.barang" />
+          <EntitySet Name="customers" EntityType="Self.customer" />
+          <EntitySet Name="pesanans" EntityType="Self.pesanan" />
+          <AssociationSet Name="FK__barang__id_pesan__5165187F" Association="Self.FK__barang__id_pesan__5165187F">
+            <End Role="pesanan" EntitySet="pesanans" />
+            <End Role="barang" EntitySet="barangs" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="db_adpModelStoreContainer" CdmEntityContainer="ADP_Entities">
+          <EntitySetMapping Name="barangs">
+            <EntityTypeMapping TypeName="db_adpModel.barang">
+              <MappingFragment StoreEntitySet="barang">
+                <ScalarProperty Name="id_barang" ColumnName="id_barang" />
+                <ScalarProperty Name="id_pesanan" ColumnName="id_pesanan" />
+                <ScalarProperty Name="nama_barang" ColumnName="nama_barang" />
+                <ScalarProperty Name="harga_barang" ColumnName="harga_barang" />
+                <ScalarProperty Name="stock_barang" ColumnName="stock_barang" />
+                <ScalarProperty Name="deskripsi_barang" ColumnName="deskripsi_barang" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="customers">
+            <EntityTypeMapping TypeName="db_adpModel.customer">
+              <MappingFragment StoreEntitySet="customer">
+                <ScalarProperty Name="id_customer" ColumnName="id_customer" />
+                <ScalarProperty Name="nama_customer" ColumnName="nama_customer" />
+                <ScalarProperty Name="telp_customer" ColumnName="telp_customer" />
+                <ScalarProperty Name="alamat_customer" ColumnName="alamat_customer" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pesanans">
+            <EntityTypeMapping TypeName="db_adpModel.pesanan">
+              <MappingFragment StoreEntitySet="pesanan">
+                <ScalarProperty Name="id_pesanan" ColumnName="id_pesanan" />
+                <ScalarProperty Name="nomor_invoice" ColumnName="nomor_invoice" />
+                <ScalarProperty Name="jumlah_pesanan" ColumnName="jumlah_pesanan" />
+                <ScalarProperty Name="total_harga" ColumnName="total_harga" />
+                <ScalarProperty Name="diskon" ColumnName="diskon" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
