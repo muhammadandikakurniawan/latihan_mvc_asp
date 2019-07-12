@@ -10,11 +10,11 @@ namespace ef.Controllers
 {
     public class ExController : Controller
     {
-       
+
         [Route("")]
         public ActionResult Auth()
         {
-            if(Session["Login"] != null)
+            if (Session["Login"] != null)
             {
                 HREntities3 hr = new HREntities3();
                 COPY_EMP empl = hr.COPY_EMP.ToList().Find(e => e.EMAIL == Session["Login"].ToString());
@@ -64,7 +64,7 @@ namespace ef.Controllers
                 }
                 else
                 {
-                    
+
                     Session.Add("login", emp.EMAIL);
                     return Redirect("~/ex");
                 }
@@ -74,13 +74,13 @@ namespace ef.Controllers
         [Route("ex")]
         public ActionResult Index()
         {
-            if(Session["login"] == null)
+            if (Session["login"] == null)
             {
                 return Redirect("~/");
             }
             HREntities3 hr = new HREntities3();
             COPY_EMP emp = hr.COPY_EMP.ToList().Find(e => e.EMAIL == Session["login"].ToString());
-            TempData.Add("message", "Login as "+ emp.FIRST_NAME);
+            TempData.Add("message", "Login as " + emp.FIRST_NAME);
             TempData.Add("type", "success");
             return View("Index");
         }
@@ -93,41 +93,46 @@ namespace ef.Controllers
                 return Redirect("~/");
             }
             HREntities3 hr = new HREntities3();
-            List<COPY_EMP> emp = hr.COPY_EMP.ToList();
+            List<COPY_EMP> emp;
+            if (Request["keyword"] != null || Request["keyword"] != "")
+            {
+                emp = hr.COPY_EMP.ToList().FindAll(p => p.FIRST_NAME.Contains(Request["keyword"]));
+            }
+            emp = hr.COPY_EMP.ToList();
             return View("Employee/List", emp);
         }
 
-        [HttpPost]
-        [Route("ex/employee/list")]
-        public ActionResult EmployeeList(string keyword)
-        {
-            if (Session["login"] == null)
-            {
-                return Redirect("~/");
-            }
-            using (HREntities3 hr = new HREntities3())
-            {
-                // List<COPY_EMP> emp = hr.COPY_EMP.Where(e => e.FIRST_NAME.Contains(keyword)).ToList(); //cara 1 
-                List<COPY_EMP> emp = (from e in hr.COPY_EMP where e.FIRST_NAME.Contains(keyword) select e).ToList(); //cara 2
-                if (emp.Count < 1 || keyword == "")
-                {
-                    return Redirect("~/ex/employee/list");
-                }
-                return View("Employee/List", emp);
-            }
-        }
+        //[HttpPost]
+        //[Route("ex/employee/list")]
+        //public ActionResult EmployeeList(string keyword)
+        //{
+        //    if (Session["login"] == null)
+        //    {
+        //        return Redirect("~/");
+        //    }
+        //    using (HREntities3 hr = new HREntities3())
+        //    {
+        //        // List<COPY_EMP> emp = hr.COPY_EMP.Where(e => e.FIRST_NAME.Contains(keyword)).ToList(); //cara 1 
+        //        List<COPY_EMP> emp = (from e in hr.COPY_EMP where e.FIRST_NAME.Contains(keyword) select e).ToList(); //cara 2
+        //        if (emp.Count < 1 || keyword == "")
+        //        {
+        //            return Redirect("~/ex/employee/list");
+        //        }
+        //        return View("Employee/List", emp);
+        //    }
+        //}
 
 
 
 
         [Route("ex/employee/edit/{id}")]
-        public ActionResult EditEmployee(int id)
+        public ActionResult EditEmployee(int id = 0)
         {
             if (Session["login"] == null)
             {
                 return Redirect("~/");
             }
-            if (id == null)
+            if (id == 0)
             {
                 return Redirect("~/ex/employee/list");
             }
@@ -211,7 +216,7 @@ namespace ef.Controllers
             List<barang> ListBarang;
             if (Request["keyword"] != null)
             {
-                ListBarang = adp.barangs.ToList().FindAll(p => Regex.IsMatch(p.nama_barang, "^.*["+Request["keyword"]+"].*$"));
+                ListBarang = adp.barangs.ToList().FindAll(p => Regex.IsMatch(p.nama_barang, ".*["+Request["keyword"]+"].*"));
                 if (ListBarang.Count < 1)
                 {
                     ListBarang = adp.barangs.ToList();
