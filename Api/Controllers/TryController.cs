@@ -88,7 +88,7 @@ namespace Api.Controllers
 
         [HttpGet]
         [Route("try/employee")]
-        public List<EmployeeDTO> Employee(string id = null)
+        public List<EmployeeDTO> Employee(decimal id)
         {
             
             HR_Entities hr = new HR_Entities();
@@ -115,13 +115,14 @@ namespace Api.Controllers
             //    employee.LAST_NAME = e.LAST_NAME;
             //    ListEmployee.Add(employee);
             //}
-            if (id == null || id == "")
+            if (id != null)
             {
-                return ListEmployeeDTO;
+                
+                return ListEmployeeDTO.FindAll(e => e.id == id);
             }
             else
             {
-                return ListEmployeeDTO.FindAll(e => e.id.ToString() == id);
+                return ListEmployeeDTO;
             }
         }
 

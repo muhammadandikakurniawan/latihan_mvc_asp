@@ -24,7 +24,7 @@ namespace Api.Controllers
         [Route("apiclient")]
         public string ApiClient()
         {
-            
+            //set authorization
             HttpClient client = new HttpClient();
 
             client.BaseAddress = new Uri("http://localhost:58762/");
@@ -43,6 +43,65 @@ namespace Api.Controllers
                 return read.Result;
             }
             return "fail";
+        }
+
+
+        [HttpGet]
+        [Route("apiclient/employee/{id?}")]
+        public string ApiClientGet(decimal id)
+        {
+            //set authorization
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri("http://localhost:58762/");
+            var get = client.GetAsync("/try/employee");
+            if (id != null)
+            {
+                get = client.GetAsync("/try/employee?id=" + id);
+            }
+            
+            get.Wait();
+
+            var result = get.Result;
+            if (result.IsSuccessStatusCode) {
+                return result.Content.ReadAsStringAsync().Result;
+            }
+            return "nul";
+        }
+
+        [Route("apiclient/post")]
+        public ActionResult ClientPost()
+        {
+                return View("Post");
+            
+        }
+
+        [HttpPost]
+        [Route("apiclient/post")]
+        public ActionResult ClientPost(EmployeeDTO emp)
+        {
+            if (emp != null)
+            {
+                HttpClient client = new HttpClient();
+                client.BaseAddress = new Uri("http://localhost:58762/");
+                var post = client.PostAsJsonAsync("try/employee", emp);
+                post.Wait();
+                var result = post.Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    TempData.Add("message", "success");
+                    return View("Post");
+                }
+                else
+                {
+                    TempData.Add("message", "fail");
+                    return View("Post");
+                }
+            }
+            else
+            {
+                TempData.Add("message", "fail");
+                return Redirect("~/apiclient/post");
+            }
         }
     }
 }

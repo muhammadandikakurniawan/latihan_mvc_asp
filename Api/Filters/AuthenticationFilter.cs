@@ -21,8 +21,8 @@ namespace Api.Filters
 
             if (token != null)
             {
-                string encode = Encoding.UTF8.GetString(Convert.FromBase64String(token));
-                string[] creds = encode.Split(':');
+                string decode = Encoding.UTF8.GetString(Convert.FromBase64String(token));
+                string[] creds = decode.Split(':');
                 string username = creds[0];
                 string password = creds[1];
 

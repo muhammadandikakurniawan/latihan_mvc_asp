@@ -1,0 +1,22 @@
+﻿@model List<Api.DTO.EmployeeDTO>
+
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    @if (Model != null)
+    {
+        foreach (var emp in Model)
+        {
+            @emp.id <br />
+            @emp.firstname <br />
+            @emp.lastname <br />
+            @emp.email <br />
+        }
+    }
+    
+        <h1>Fail</h1>
+    
+</body>
+</html>

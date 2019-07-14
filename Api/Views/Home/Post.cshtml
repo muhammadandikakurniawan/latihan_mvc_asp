@@ -1,0 +1,22 @@
+﻿@model Api.DTO.EmployeeDTO
+
+<html>
+
+<head>
+    <title></title>
+</head>
+<body>
+    @if(TempData.Peek("message") != null)
+    {
+    <h1> @TempData["message"] </h1>
+    }
+    <form action="~/apiclient/post" method="post">
+        @Html.TextAreaFor(m => m.id)
+        @Html.TextAreaFor(m => m.firstname)
+        @Html.TextAreaFor(m => m.lastname)
+        @Html.TextAreaFor(m => m.email)
+        <button type="submit" name="send">Send</button>
+    </form>
+</body>
+</html>
+

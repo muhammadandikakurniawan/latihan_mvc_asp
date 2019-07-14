@@ -19,7 +19,6 @@ namespace Api
                        .Formatters
                        .JsonFormatter;
             json.UseDataContractJsonSerializer = true;
-
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",

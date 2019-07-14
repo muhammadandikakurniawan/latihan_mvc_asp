@@ -1,0 +1,28 @@
+﻿@model List<latihan_filter.Models.Barang>
+@section content{
+<table class="table table-striped table-dark">
+    <thead>
+        <tr>
+            <th scope="col">No</th>
+            <th scope="col">Product Id</th>
+            <th scope="col">Product Name</th>
+            <th scope="col">Product Price</th>
+            <th scope="col">Product Stock</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{int no = 1;}
+        @foreach (var item in Model)
+        {
+        <tr>
+            <th scope="row">@(no++)</th>
+            <td>@item.id</td>
+            <td>@item.name</td>
+            <td>@item.price</td>
+            <td>@item.stock</td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+}
