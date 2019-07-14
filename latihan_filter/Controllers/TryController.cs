@@ -41,39 +41,54 @@ namespace latihan_filter.Controllers
 
             if (result.IsSuccessStatusCode)
             {
-                var read = result.Content.ReadAsStringAsync();
+                var read = result.Content.ReadAsAsync<List<Barang>>();
+                //var read = result.Content.ReadAsStringAsync();
                 read.Wait();
-                DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(List<Barang>));
-                MemoryStream ms = new MemoryStream(Encoding.UTF8.GetBytes(read.Result));
-                ListBarang = (List<Barang>)ser.ReadObject(ms);
+                //DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(List<Barang>));
+                //MemoryStream ms = new MemoryStream(Encoding.UTF8.GetBytes(read.Result));
+                //ListBarang = (List<Barang>)ser.ReadObject(ms);
+                ListBarang = read.Result;
                 return View("GetData", ListBarang);
             }
             return View("GetData", ListBarang);
         }
 
-        //[Route("apiclient/post")]
-        //public ActionResult PostClient(Barang b)
-        //{
-        //    if(b != null)
-        //    {
-        //        HttpClient client = new HttpClient();
-        //        client.BaseAddress = new Uri("http://localhost:55814");
+        [Route("apiclient/post")]
+        public ActionResult PostClient(Barang b)
+        {
+            if (b.id != null)
+            {
+                HttpClient client = new HttpClient();
+                client.BaseAddress = new Uri("http://localhost:55814");
 
-        //        var get = client.PutAsJsonAsync("apiserver/barang", b);
-        //        get.Wait();
+                //var value = new Dictionary<string, string>()
+                //{
+                //    {"id",b.id.ToString()},{"name",b.name.ToString()},{"price",b.price.ToString()},{"stock",b.stock.ToString()}
+                //};
+ 
+                //var content = new FormUrlEncodedContent(value);
 
-        //        var result = get.Result;
+                var get = client.PostAsJsonAsync("apiserver/barang", b);
+                get.Wait();
 
-        //        if (result.IsSuccessStatusCode)
-        //        {
-        //            var read = result.Content.ReadAsStreamAsync();
+                var result = get.Result;
 
-        //        }
-        //    }
-        //    else
-        //    {
-        //        return View("Post");
-        //    }
-        //}
+                if (result.IsSuccessStatusCode)
+                {
+                    var read = result.Content.ReadAsAsync<dynamic>();
+                    read.Wait();
+                    TempData.Add("message", read.Result.response);
+                    TempData.Add("type", "success");
+                    return Redirect("~/apiclient/post");
+                }
+                TempData.Add("message", "fail");
+                TempData.Add("type", "danger");
+                return Redirect("~/apiclient/post");
+            }
+            else
+            {
+                return View("PostData");
+            }
+        }
     }
 }

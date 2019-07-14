@@ -9,6 +9,9 @@ using System.Data;
 
 namespace latihan_filter.Controllers
 {
+    public class Response{
+         public string response { set; get; }
+    }
     public class ApiServerController : ApiController
     {
         //[HttpGet]
@@ -26,19 +29,22 @@ namespace latihan_filter.Controllers
 
         //[HttpPost]
         [Route("apiserver/barang")]
-        public Dictionary<string,string> PostBarang(Barang b)
+        public Response PostBarang(Barang b)
         {
-            Dictionary<string, string> response = new Dictionary<string, string>() { {"status","success"} };
+            //Dictionary<string, string> response = new Dictionary<string, string>() { {"status","success"} };
+            Response response = new Response(){ response = "success" } ;
             Barang barang = new Barang();
             try
             {
-                response["status"] = b == null ? "Not Data Sended" : response["status"];
+                response.response = b == null ? "Not Data Sended" : response.response;
 
                 barang.PostData(b);
+
+               
             }
             catch (Exception)
             {
-                response["status"] = "Internal Server Error";
+               response.response = "Internal Server Error" ;
             }
 
             return response;

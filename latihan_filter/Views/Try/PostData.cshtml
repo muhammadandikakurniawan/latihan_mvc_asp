@@ -1,0 +1,36 @@
+﻿@model latihan_filter.Models.Barang
+@section content{
+
+    @if (TempData.Peek("message") != null)
+    {
+        <div class="alert alert-@TempData["type"] alert-dismissible fade show" role="alert">
+            @TempData["message"]
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    }
+
+    <form action="~/apiclient/post" method="post">
+        <div class="form-group">
+            <label for="id">Product Id</label>
+            @Html.TextBoxFor(m => m.id, new { @class = "form-control", @id = "id" })
+        </div>
+        <div class="form-group">
+            <label for="name">Product Name</label>
+            @Html.TextBoxFor(m => m.name, new { @class = "form-control", @id = "name" })
+        </div>
+        <div class="form-group">
+            <label for="price">Product Price</label>
+            @Html.TextBoxFor(m => m.price, new { @class = "form-control", @id = "price" })
+        </div>
+        <div class="form-group">
+            <label for="stock">Product stock</label>
+            @Html.TextBoxFor(m => m.stock, new { @class = "form-control", @id = "stock" })
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-success">Add</button>
+        </div>
+    </form>
+
+}

@@ -252,6 +252,7 @@
     <Content Include="Views\Try\_ViewStart.cshtml" />
     <Content Include="Views\Try\Login.cshtml" />
     <Content Include="Views\Try\GetData.cshtml" />
+    <Content Include="Views\Try\PostData.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
